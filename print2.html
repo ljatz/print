@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="hr">
+	<head>   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style type="text/css">
+		[ng\:cloak], [ng-cloak], .ng-cloak {
+			display:none;
+		}
+		.container {
+			width:50%;
+			margin:0 auto;
+		}
+		button {
+			margin:20px 0 0 40%;
+			padding:5px 20px;
+		}
+		p {
+			display:none;
+			}
+		form, h2, button {
+			text-align:center;
+		}
+		input {
+			text-transform:capitalize;
+		}	
+		select, input {
+			margin:5px 0;
+			padding:2px 0;
+		}
+		button, #names {
+			text-transform:capitalize;
+		}
+		/* print view */
+		@media print {
+			label, input, select, button, h2 {
+				display:none;
+			}
+			body {
+				margin:12%;
+				padding:0;
+				font-family:Times New Roman;
+				font-size:12pt;
+			}
+			p {
+				display:block;
+				margin:0;
+				padding:0;
+				line-height:1.4;
+			}
+			#sto {
+				margin-bottom:50px;
+			}
+			.text {
+				text-indent:40px;
+				margin:32px 0;
+				padding:0;
+			}
+			.signature {
+				margin:16px 0 0 80px;
+				padding:0;
+			}
+			.right {
+				width:50%;
+				float:right;
+			}
+			.clear {
+				clear:both;
+			}
+			.ssg {
+				font-size:13px;
+				text-transform:uppercase;
+			}
+			.line {
+				text-decoration: underline;
+			}
+			select {
+				-webkit-appearance: none;
+				-moz-appearance: none;      
+				appearance: none;
+			}
+			@page {
+				margin:0;
+			}
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		<title>Zahtjev za godi&#353;nji odmor</title>
+	</head>
+	<body ng-app="">
+		<!-- form -->
+		<div class="container">
+			<h2>Zahtjev za godi&#353;nji odmor</h2>
+				<form name="test" id="test">				
+					<label>Ime i prezime:</label>
+						<input type="text" maxlength="30" ng-model="names" ng-required="true" ng-pattern="/\s/" autofocus><br>
+					<label>Pododsjek za </label>
+						<select ng-model="sections">
+							<option value="" ng-required="true">
+							<option value="tz">odjel 1
+							<option value="in">odjel 2 
+							<option value="dc">odjel 3
+							<option value="zo">odjel 4
+						</select><br>
+					<label>godi&#353;nji odmor :</label>
+						<select ng-model="days" ng-required="true">
+							<option value="">
+							<option value="jedan dan">jedan dan
+							<option value="dijela">dio dana
+							<option value="II dijela">II dio
+						</select>
+						<select ng-model="genders" ng-required="true">
+							<option value="">
+							<option value="koristio">koristio bih
+							<option value="koristila">koristila bih
+						</select> 
+						<div ng-switch="days"> 
+							<div ng-switch-when="jedan dan">
+								<input type="text" id="jd">
+							</div>
+							<div ng-switch-when="dijela">
+								od <input type="text" id="pd"> do
+								<input type="text" id="dd">
+							</div>
+							<div ng-switch-when="II dijela">
+								od <input type="text" id="pdd"> do
+								<input type="text" id="ddd">
+							</div>
+						</div>	
+						<br>	
+						<button ng-disabled="test.$invalid" onclick="window.print();">PRINT</button>
+				</form>
+		</div>
+		<!-- header -->
+		<p id="names">{{ names }}</p>
+		<p>Sektor</p>
+		<p>Odjel</p>
+		<p>Pododsjek</p>
+		<p style="padding-bottom:30px;">Zagreb, 
+			<script>
+				var d = new Date;
+					document.write(d.getDate() + '.');
+					document.write(d.getMonth() + 1 + '.' + d.getFullYear() + '.');
+			</script>
+		</p>
+			<!-- office -->
+			<div class="right">
+				<p>Sektor</p>
+				<p style="margin-left:45px;">n/r DIREKTOR</p>
+				<p style="margin-left:25px;padding-bottom:30px;">Pero Peri&#263;, dipl.iur.</p>
+			</div>
+			<div class="clear"></div>
+			<p class="line">Predmet: zahtjev za godi&#353;nji odmor</p>
+			<div ng-switch="days">
+				<div ng-switch-when="jedan dan"> 
+					<p class="text">Molim da mi se odobri kori&#353;tenje {{days}} godi&#353;njeg odmora za 2020. koji bih {{genders}} </p>
+				</div><span id="jd">{{jd}}</span>
+				<div ng-switch-when="dijela"> 
+					<p class="text">Molim da mi se odobri kori&#353;tenje {{days}} godi&#353;njeg odmora za 2020. koji bih {{genders}} od  do  godine.</p>
+				</div>
+				<div ng-switch-when="II dijela"> 
+					<p class="text">Molim da mi se odobri kori&#353;tenje {{days}} godi&#353;njeg odmora za 2020. koji bih {{genders}} od  do  godine.</p>
+				</div>
+			</div>
+			<p id="sto">Sa &#353;tovanjem,</p>
+			<div class="right">
+				<p class="signature">Prezime i ime:</p>
+				<p class="signature" style="padding-bottom:20px;">_______________________</p>
+			</div>
+			<div class="clear"></div>
+			<!-- sign -->
+			<p>SUGLASAN:</p>
+			<div ng-switch="sections">
+				<div ng-switch-when="tz">
+					<p>odjel 1</p>
+					<p>Pero Peri&#263;</p>
+				</div>
+				<div ng-switch-when="in">
+					<p>odjel 2</p>
+					<p>Pero Peri&#263;</p>
+				</div>
+				<div ng-switch-when="dc">
+				<p>odjel 3</p>
+					<p>Pero Peri&#263;</p>
+				</div>
+				<div ng-switch-when="zo">
+					<p>odjel 4</p>
+					<p>Pero Peri&#263;</p>
+				</div>
+			</div>
+			<br>
+			<p style="padding-bottom:20px;">_______________________</p>
+			<div class="right">
+				<p style="margin-left:75px;margin-top:20px;">ODOBRIO:</p>
+				<p style="margin-left:70px;">DIREKTOR</p>
+				<p class="ssg">Sektora</p>
+				<p style="margin-left:45px;">Pero Peri&#263;, dipl.iur.</p>
+				<br>
+				<p>______________________________</p>
+			</div>
+	</body>
+</html>
