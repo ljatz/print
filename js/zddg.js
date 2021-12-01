@@ -46,20 +46,20 @@
 			
 			switch(sections){
 				case 'tz':
-					var section = 'Voditelj Pododsjeka za poslove tjelesne za&#353;tite';
-					var sign = 'nikica mi&#353;&#263;evi&#263;';
+					var section = 'Voditelj 1';
+					var sign = 'pero peric';
 				break;
 				case 'in':
-					var section = 'Voditelj Pododsjeka za poslove intervencije po dojavnom signalu';
-					var sign = 'robert juren';
+					var section = 'Voditelj 2';
+					var sign = 'pero peric';
 				break;
 				case 'dc':
-					var section = 'Voditelj Pododsjeka za poslove dojavnog centra';
-					var sign = 'boris ivankovi&#263;';
+					var section = 'Voditelj 3';
+					var sign = 'pero peric';
 				break;
 				case 'zo':
-					var section = 'Voditelj Pododsjeka za poslove za&#353;tite od po&#382;ara';
-					var sign = 'ivana vuger';
+					var section = 'Voditelj 4';
+					var sign = 'pero peric';
 				break;
 			}		
 		
